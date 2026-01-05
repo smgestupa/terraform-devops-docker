@@ -30,8 +30,8 @@ sg_app_create_ingress_rules = [
   },
   {
     cidr_ipv4 = "0.0.0.0/0"
-    from_port = "22"
-    to_port = "22"
+    from_port = "80"
+    to_port = "80"
     ip_protocol = "tcp"
   }
 ]
