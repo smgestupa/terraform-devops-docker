@@ -16,7 +16,7 @@ module "subnet_public" {
   name  = var.subnet_public_name
   cidrs = var.subnet_public_cidrs
 
-  availability_zones = data.aws_availability_zones.this.names[0]
+  availability_zones = [data.aws_availability_zones.this.names[0]]
 
   vpc_id = module.vpc.this.id
 
