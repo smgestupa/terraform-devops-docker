@@ -46,7 +46,7 @@ module "sg_app" {
   source = "./modules/sg"
 
   name   = var.sg_app_name
-  vpc_id = module.vpc_main.this.id
+  vpc_id = module.vpc.this.id
 
   create_ingress_rules = local.create_ingress_rules
   create_egress_rules  = var.sg_app_create_egress_rules
