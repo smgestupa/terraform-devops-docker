@@ -67,5 +67,8 @@ module "ec2_app" {
 
   monitoring = var.ec2_app_monitoring
 
+  iam_instance_profile = module.role_app.instance_profile.name
+
   user_data = filebase64("${path.module}/scripts/ec2_init.sh")
+
 }
