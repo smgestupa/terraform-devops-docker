@@ -27,19 +27,20 @@ subnet_public_create_route_table = {
 sg_app_name                 = "devops-test-sg-app"
 sg_app_create_ingress_rules = [
   {
-    cidr_ipv4 = "0.0.0.0/0"
-    ip_protocol = "icmp"
+    from_port   = "80"
+    to_port     = "80"
+    ip_protocol = "tcp"
   },
   {
-    cidr_ipv4 = "0.0.0.0/0"
-    from_port = "80"
-    to_port = "80"
-    ip_protocol = "tcp"
+    cidr_ipv4   = "0.0.0.0/0"
+    from_port   = "-1"
+    to_port     = "-1"
+    ip_protocol = "icmp"
   }
 ]
 sg_app_create_egress_rules = [
   {
-    cidr_ipv4 = "0.0.0.0/0"
+    cidr_ipv4   = "0.0.0.0/0"
     ip_protocol = "-1"
   }
 ]
