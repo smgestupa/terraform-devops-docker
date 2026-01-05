@@ -10,10 +10,12 @@ vpc_name                    = "devops-test-vpc"
 vpc_cidr                    = "10.250.0.0/16"
 vpc_enable_dns_hostnames    = true
 vpc_enable_dns_support      = true
-vpc_create_internet_gateway = true
+vpc_create_internet_gateway = {
+  name = "devops-test-igw"
+}
 
 subnet_public_name               = "devops-test-pub-subnet-001"
-subnet_public_cidrs              = "10.250.0.0/24"
+subnet_public_cidrs              = ["10.250.0.0/24"]
 subnet_public_create_route_table = {
   name = "devops-test-public"
 
