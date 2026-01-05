@@ -57,6 +57,7 @@ role_app_create_instance_profile = true
 ec2_app_name                        = "devops-test-app"
 ec2_app_update_default_version      = true
 ec2_app_associate_public_ip_address = true
+ec2_app_monitoring                  = false
 ec2_app_create_root_block_device    = {
   encrypted = true
 }
