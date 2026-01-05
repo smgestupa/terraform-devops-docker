@@ -16,7 +16,7 @@ module "subnet_public" {
   name  = var.subnet_public_name
   cidrs = var.subnet_public_cidrs
 
-  availability_zones = [element(data.aws_availability_zones.this.names, 0)]
+  availability_zones = data.aws_availability_zones.this.names[0]
 
   vpc_id = module.vpc.this.id
 
@@ -48,7 +48,7 @@ module "sg_app" {
   name   = var.sg_app_name
   vpc_id = module.vpc.this.id
 
-  create_ingress_rules = local.create_ingress_rules
+  create_ingress_rules = local.sg_app_create_ingress_rules
   create_egress_rules  = var.sg_app_create_egress_rules
 }
 

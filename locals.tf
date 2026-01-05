@@ -1,11 +1,8 @@
 locals {
-  create_ingress_rules = [
-    for rule in merge(var.sg_app_create_ingress_rules, {
+  sg_app_create_ingress_rules = [
+      merge(var.sg_app_create_ingress_rules[0], {
       cidr_ipv4   = var.my_ip
-      from_port   = 80
-      to_port     = 80
-      ip_protocol = "tcp"
-    })
-    : rule
+    }),
+    var.sg_app_create_ingress_rules[1]
   ]
 }
