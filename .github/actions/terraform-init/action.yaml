@@ -12,6 +12,8 @@ runs:
     - name: Validate Terraform configs
       run: terraform validate
       shell: bash
+    - run: ls
+      shell: bash
     - name: Move initialized Terraform files to output folder
       run: |
         cp -r .terraform output/terraform/init/.terraform
