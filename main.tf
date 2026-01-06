@@ -16,7 +16,7 @@ module "subnet_public" {
   name  = var.subnet_public_name
   cidrs = var.subnet_public_cidrs
 
-  availability_zones = [element(data.aws_availability_zones.this.names, 0)]
+  availability_zones = [data.aws_availability_zones.this.names[0]]
 
   vpc_id = module.vpc.this.id
 
@@ -46,9 +46,9 @@ module "sg_app" {
   source = "./modules/sg"
 
   name   = var.sg_app_name
-  vpc_id = module.vpc_main.this.id
+  vpc_id = module.vpc.this.id
 
-  create_ingress_rules = local.create_ingress_rules
+  create_ingress_rules = local.sg_app_create_ingress_rules
   create_egress_rules  = var.sg_app_create_egress_rules
 }
 
@@ -67,5 +67,8 @@ module "ec2_app" {
 
   monitoring = var.ec2_app_monitoring
 
+  iam_instance_profile = module.role_app.instance_profile.name
+
   user_data = filebase64("${path.module}/scripts/ec2_init.sh")
+
 }

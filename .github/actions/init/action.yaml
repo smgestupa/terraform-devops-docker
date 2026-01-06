@@ -1,0 +1,16 @@
+name: Init
+
+runs:
+  using: composite
+  steps:
+    - name: Check for the Terraform init files
+      id: terraform-init
+      uses: ./.github/actions/check-terraform-init
+    - name: Init Terraform & its configurations
+      if: steps.terraform-init.outputs.exists != 'true'
+      uses: ./.github/actions/terraform-init
+    - name: Move Terraform init files to current directory
+      run: |
+        cp -r output/terraform/init/.terraform .terraform
+        cp output/terraform/init/.terraform.lock.hcl .terraform.lock.hcl
+      shell: bash

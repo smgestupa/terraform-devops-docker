@@ -1,0 +1,26 @@
+name: Check Terraform binary
+
+outputs:
+  exists:
+    value: ${{ steps.terraform-bin.outputs.exists }}
+
+runs:
+  using: composite
+  steps:
+    - name: Download Terraform binary
+      continue-on-error: true
+      uses: actions/download-artifact@v4
+      with:
+        name: terraform-bin
+        path: output/terraform/files
+    - name: Check if Terraform binary exists
+      id: terraform-bin
+      run: |
+        if [ -e output/terraform/files/terraform ]; then 
+          echo "exists=true" >> $GITHUB_OUTPUT
+          echo "Terraform binary file already exists..."
+        else
+          echo "exists=false" >> $GITHUB_OUTPUT
+          echo "Terraform binary file does not exist..."
+        fi
+      shell: bash
