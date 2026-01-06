@@ -14,8 +14,8 @@ runs:
       shell: bash
     - name: Move initialized Terraform files to output folder
       run: |
-        cp -r .terraform output/init/.terraform
-        cp .terraform.lock.hcl output/init/.terraform.lock.hcl
+        cp -r .terraform output/terraform/init/.terraform
+        cp .terraform.lock.hcl output/terraform/init/.terraform.lock.hcl
       shell: bash
     - name: Archive Terraform init files
       uses: actions/upload-artifact@v4

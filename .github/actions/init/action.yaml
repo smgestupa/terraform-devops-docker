@@ -11,5 +11,5 @@ runs:
     - name: Move Terraform init files to current directory
       run: |
         cp -r output/terraform/init/.terraform .terraform
-        cp output/teraform/init/.terraform.lock.hcl .terraform.lock.hcl
+        cp output/terraform/init/.terraform.lock.hcl .terraform.lock.hcl
       shell: bash
