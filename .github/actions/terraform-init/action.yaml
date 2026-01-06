@@ -1,0 +1,20 @@
+name: Initialize Terraform configs
+
+runs:
+  using: composite
+  steps:
+    - name: Create output folder for Terraform init files
+      run: mkdir -p output/init
+    - name: Initialize the Terraform directory
+      run: terraform init
+    - name: Validate Terraform configs
+      run: terraform validate
+    - name: Move initialized Terraform files to output folder
+      run: |
+        cp -r .terraform output/init/.terraform
+        cp .terraform.lock.hcl output/init/.terraform.lock.hcl
+    - name: Archive Terraform init files
+      uses: actions/upload-artifact@v4
+      with:
+        name: terraform-init
+        path: output/terraform/init

@@ -1,0 +1,14 @@
+name: Setup
+
+runs:
+  using: composite
+  steps:
+    - name: Check for the Terraform binary
+      uses: ./.github/actions/check-terraform-bin
+    - name: Setup Terraform & cache its binary
+      if: steps.terraform-bin.output.exists != true
+      uses: ./.github/actions/terraform-bin
+      with:
+        terraform_version: ${{ vars.TF_VERSION }}
+    - name: Allow Terraform binary be used by non-roots 
+      run: cp output/terraform/bin /usr/local/bin/terraform

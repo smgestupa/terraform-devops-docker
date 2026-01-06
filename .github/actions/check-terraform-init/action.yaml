@@ -1,0 +1,17 @@
+name: Check Terraform init
+
+runs:
+  using: composite
+  steps:
+    - name: Download Terraform binary
+      uses: actions/download-artifact@v4
+      with:
+        name: terraform-init
+    - name: Check if Terraform init files exist
+      id: terraform-init
+      run: |
+        if [ -e output/terraform/init ]; then 
+          echo "exists=true" >> $GITHUB_OUTPUT
+        else
+          echo "exists=false" >> $GITHUB_OUTPUT
+        fi

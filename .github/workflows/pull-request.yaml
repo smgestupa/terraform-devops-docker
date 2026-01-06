@@ -1,0 +1,45 @@
+name: Pull Request
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  ENVIRONMENT: ${{ github.ref == 'refs/heads/main' && 'prod' || 'dev' }}
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout to repository
+        uses: actions/checkout@v4
+      - name: Setup to generate necessary Terraform files
+        uses: ./.github/actions/setup
+      - name: Check the current Terraform version
+        run: terraform version
+  init:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - name: Checkout to repository
+        uses: actions/checkout@v4
+      - name: Setup to generate Terraform binary
+        uses: ./.github/actions/setup
+      - name: Initialize Terraform configurations
+        uses: ./.github/actions/init
+  plan:
+    runs-on: ubuntu-latest
+    needs: init
+    steps:
+      - name: Checkout to repository
+        uses: actions/checkout@v4
+      - name: Setup to generate Terraform binary
+        uses: ./.github/actions/setup
+      - name: Initialize Terraform configurations
+        uses: ./.github/actions/init
+      - name: Output the infrastructure changes
+        run: terraform plan -var-file=envs/$ENVIRONMENT/env.tfvars
