@@ -13,7 +13,7 @@ runs:
       run: terraform validate
       shell: bash
     - name: Move initialized Terraform files to output folder
-      run: cp -r .terraform .terraform.lock.hcl output/terraform/init
+      run: cp -r .terraform output/terraform/init/ && cp .terraform.lock.hcl output/terraform/init/
       shell: bash
     - run: ls -a
       continue-on-error: true
