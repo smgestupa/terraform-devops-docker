@@ -3,6 +3,11 @@ name: Check Terraform binary
 runs:
   using: composite
   steps:
+    - name: Download Terraform binary
+      continue-on-error: true
+      uses: actions/download-artifact@v4
+      with:
+        name: terraform-bin
     - name: Check if Terraform binary exists
       id: terraform-bin
       run: |
@@ -12,8 +17,3 @@ runs:
           echo "exists=false" >> $GITHUB_OUTPUT
         fi
       shell: bash
-    - name: Download Terraform binary
-      if: steps.terraform-bin.outputs.exists != true
-      uses: actions/download-artifact@v4
-      with:
-        name: terraform-bin
