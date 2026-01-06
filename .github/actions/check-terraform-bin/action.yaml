@@ -16,7 +16,7 @@ runs:
     - name: Check if Terraform binary exists
       id: terraform-bin
       run: |
-        if [ -e output/terraform/bin ]; then 
+        if [ -e output/terraform/files/terraform ]; then 
           echo "exists=true" >> $GITHUB_OUTPUT
           echo "Terraform binary file already exists..."
         else

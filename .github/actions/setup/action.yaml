@@ -17,7 +17,6 @@ runs:
         terraform_version: ${{ inputs.terraform_version }}
     - name: Allow Terraform binary be used by non-roots 
       run: |
-        cp output/terraform/bin bin/terraform
-        chmod +x bin/terraform
-        echo "$(pwd)/bin/terraform" >> $GITHUB_PATH
+        chmod +x output/terraform/files/terraform
+        echo "$(pwd)/output/terraform/files/terraform" >> $GITHUB_PATH
       shell: bash
