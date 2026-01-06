@@ -15,3 +15,4 @@ runs:
         else
           echo "exists=false" >> $GITHUB_OUTPUT
         fi
+      shell: bash

@@ -16,3 +16,4 @@ runs:
         terraform_version: ${{ inputs.terraform_version }}
     - name: Allow Terraform binary be used by non-roots 
       run: cp output/terraform/bin /usr/local/bin/terraform
+      shell: bash

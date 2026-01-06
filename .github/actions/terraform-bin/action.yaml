@@ -13,8 +13,10 @@ runs:
         terraform_version: ${{ inputs.terraform_version }}
     - name: Create output folder for Terraform binary
       run: mkdir -p output/terraform
+      shell: bash
     - name: Copy Terraform binary to output folder
       run: cp $TERRAFORM_CLI_PATH/terraform-bin output/terraform/bin
+      shell: bash
     - name: Archive Terraform binary
       uses: actions/upload-artifact@v4
       with:

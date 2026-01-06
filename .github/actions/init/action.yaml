@@ -12,3 +12,4 @@ runs:
       run: |
         cp -r output/terraform/init/.terraform .terraform
         cp output/teraform/init/.terraform.lock.hcl .terraform.lock.hcl
+      shell: bash
