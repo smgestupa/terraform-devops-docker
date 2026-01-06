@@ -4,7 +4,7 @@ runs:
   using: composite
   steps:
     - name: Create output folder for Terraform init files
-      run: mkdir -p output/init
+      run: mkdir -p output/terraform/init
       shell: bash
     - name: Initialize the Terraform directory
       run: terraform init
