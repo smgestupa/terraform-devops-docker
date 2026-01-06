@@ -64,5 +64,5 @@ jobs:
       - name: Initialize Terraform configurations
         uses: ./.github/actions/init
       - name: Output the infrastructure changes
-        run: terraform apply -var-file=envs/$ENVIRONMENT/env.tfvars
+        run: terraform apply -var-file=envs/$ENVIRONMENT/env.tfvars -auto-approve
         shell: bash

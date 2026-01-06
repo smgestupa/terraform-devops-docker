@@ -10,7 +10,8 @@ runs:
       if: steps.terraform-init.outputs.exists != 'true'
       uses: ./.github/actions/terraform-init
     - name: Move Terraform init files to current directory
-      run: |
-        cp -r output/terraform/init/.terraform .terraform
-        cp output/terraform/init/.terraform.lock.hcl .terraform.lock.hcl
+      run: cp -r output/terraform/init/.terraform .terraform && cp output/terraform/init/.terraform.lock.hcl .terraform.lock.hcl
+      shell: bash
+    - name: Make Terraform plugins executable
+      run: find .terraform/providers/ -type f -name 'terraform-provider-*' -exec chmod +x {} \;
       shell: bash
