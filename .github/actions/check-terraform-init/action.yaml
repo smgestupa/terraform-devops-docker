@@ -1,5 +1,9 @@
 name: Check Terraform init
 
+outputs:
+  exists:
+    value: ${{ steps.terraform-init.outputs.exists }}
+
 runs:
   using: composite
   steps:

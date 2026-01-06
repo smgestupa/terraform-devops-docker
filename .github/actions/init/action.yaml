@@ -4,6 +4,7 @@ runs:
   using: composite
   steps:
     - name: Check for the Terraform init files
+      id: terraform-init
       uses: ./.github/actions/check-terraform-init
     - name: Init Terraform & its configurations
       if: steps.terraform-init.outputs.exists != 'true'

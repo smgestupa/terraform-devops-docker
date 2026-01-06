@@ -1,5 +1,9 @@
 name: Check Terraform binary
 
+outputs:
+  exists:
+    value: ${{ steps.terraform-bin.outputs.exists }}
+
 runs:
   using: composite
   steps:
