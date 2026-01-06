@@ -10,7 +10,7 @@ runs:
     - name: Check for the Terraform binary
       uses: ./.github/actions/check-terraform-bin
     - name: Setup Terraform & cache its binary
-      if: steps.terraform-bin.output.exists != true
+      if: ${{ steps.terraform-bin.output.exists != true }}
       uses: ./.github/actions/terraform-bin
       with:
         terraform_version: ${{ inputs.terraform_version }}

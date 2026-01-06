@@ -6,7 +6,7 @@ runs:
     - name: Check for the Terraform init files
       uses: ./.github/actions/check-terraform-init
     - name: Init Terraform & its configurations
-      if: steps.terraform-init.output.exists != true
+      if: ${{ steps.terraform-init.output.exists != true }}
       uses: ./.github/actions/terraform-init
     - name: Move Terraform init files to current directory
       run: |
