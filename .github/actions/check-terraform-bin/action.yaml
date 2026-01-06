@@ -8,10 +8,13 @@ runs:
       uses: actions/download-artifact@v4
       with:
         name: terraform-bin
+    - run: ls output/terraform
+      continue-on-error: true
+      shell: bash
     - name: Check if Terraform binary exists
       id: terraform-bin
       run: |
-        if [ -f output/terraform/bin ]; then 
+        if [ -e output/terraform/bin ]; then 
           echo "exists=true" >> $GITHUB_OUTPUT
           echo "Terraform binary file already exists..."
         else

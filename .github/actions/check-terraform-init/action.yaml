@@ -8,10 +8,13 @@ runs:
       uses: actions/download-artifact@v4
       with:
         name: terraform-init
+    - run: ls output/terraform
+      continue-on-error: true
+      shell: bash
     - name: Check if Terraform init files exist
       id: terraform-init
       run: |
-        if [ -f output/terraform/init ]; then 
+        if [ -e output/terraform/init ]; then 
           echo "exists=true" >> $GITHUB_OUTPUT
           echo "Terraform init files already exist..."
         else
