@@ -8,7 +8,8 @@ runs:
       uses: actions/download-artifact@v4
       with:
         name: terraform-init
-    - run: ls output/terraform
+        path: output
+    - run: ls output
       continue-on-error: true
       shell: bash
     - name: Check if Terraform init files exist
