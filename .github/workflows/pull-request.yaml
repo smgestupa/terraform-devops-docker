@@ -42,6 +42,8 @@ jobs:
     steps:
       - name: Checkout to repository
         uses: actions/checkout@v4
+      - run: ls output/
+        shell: bash
       - name: Setup to generate Terraform binary
         uses: ./.github/actions/setup
         with:
