@@ -1,5 +1,9 @@
 name: Setup
 
+inputs:
+  terraform_version:
+    required: true
+
 runs:
   using: composite
   steps:
@@ -9,6 +13,6 @@ runs:
       if: steps.terraform-bin.output.exists != true
       uses: ./.github/actions/terraform-bin
       with:
-        terraform_version: ${{ vars.TF_VERSION }}
+        terraform_version: ${{ inputs.terraform_version }}
     - name: Allow Terraform binary be used by non-roots 
       run: cp output/terraform/bin /usr/local/bin/terraform

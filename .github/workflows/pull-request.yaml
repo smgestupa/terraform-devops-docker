@@ -19,6 +19,8 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup to generate necessary Terraform files
         uses: ./.github/actions/setup
+        with:
+          terraform_version: ${{ vars.TF_VERSION }}
       - name: Check the current Terraform version
         run: terraform version
   init:
@@ -29,6 +31,8 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup to generate Terraform binary
         uses: ./.github/actions/setup
+        with:
+          terraform_version: ${{ vars.TF_VERSION }}
       - name: Initialize Terraform configurations
         uses: ./.github/actions/init
   plan:
@@ -39,6 +43,8 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup to generate Terraform binary
         uses: ./.github/actions/setup
+        with:
+          terraform_version: ${{ vars.TF_VERSION }}
       - name: Initialize Terraform configurations
         uses: ./.github/actions/init
       - name: Output the infrastructure changes
