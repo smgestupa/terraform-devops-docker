@@ -14,3 +14,4 @@ runs:
       shell: bash
     - name: Make Terraform plugins executable
       run: find .terraform/providers/ -type f -name 'terraform-provider-*' -exec chmod +x {} \;
+      shell: bash
