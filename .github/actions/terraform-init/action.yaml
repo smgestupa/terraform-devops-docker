@@ -13,10 +13,11 @@ runs:
       run: terraform validate
       shell: bash
     - name: Move initialized Terraform files to output folder
-      run: cp -r .terraform output/terraform/init/ && cp .terraform.lock.hcl output/terraform/init/
+      run: cp -r .terraform output/terraform/init && cp .terraform.lock.hcl output/terraform/init
       shell: bash
     - name: Archive Terraform init files
       uses: actions/upload-artifact@v4
       with:
         name: terraform-init
-        path: output/terraform/init/**
+        path: output/terraform/init
+        include-hidden-files: true
