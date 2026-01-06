@@ -18,7 +18,7 @@ runs:
     - run: ls -a
       continue-on-error: true
       shell: bash
-    - run: ls -R output
+    - run: ls -a -R output
       continue-on-error: true
       shell: bash
     - name: Archive Terraform init files
