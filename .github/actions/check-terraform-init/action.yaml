@@ -11,7 +11,7 @@ runs:
     - name: Check if Terraform init files exist
       id: terraform-init
       run: |
-        if [ -e output/terraform/init ]; then 
+        if [ -f output/terraform/init ]; then 
           echo "exists=true" >> $GITHUB_OUTPUT
           echo "Terraform init files already exist..."
         else
