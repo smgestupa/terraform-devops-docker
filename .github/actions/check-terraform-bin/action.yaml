@@ -13,7 +13,9 @@ runs:
       run: |
         if [ -e output/terraform/bin ]; then 
           echo "exists=true" >> $GITHUB_OUTPUT
+          echo "Terraform binary file already exists..."
         else
           echo "exists=false" >> $GITHUB_OUTPUT
+          echo "Terraform binary file does not exist..."
         fi
       shell: bash

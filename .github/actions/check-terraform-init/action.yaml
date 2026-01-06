@@ -13,7 +13,9 @@ runs:
       run: |
         if [ -e output/terraform/init ]; then 
           echo "exists=true" >> $GITHUB_OUTPUT
+          echo "Terraform init files already exist..."
         else
           echo "exists=false" >> $GITHUB_OUTPUT
+          echo "Terraform init files do not exist..."
         fi
       shell: bash
